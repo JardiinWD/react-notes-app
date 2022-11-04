@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-/* GLOBAL STYLES */
+/*#region Global Styles */
 
 body,
 .App {
@@ -14,7 +14,7 @@ body,
   height: 100vh;
   overflow: hidden;
   font-size: 16px;
-  background: url(https://www.toptal.com/designers/subtlepatterns/patterns/lightpaperfibers.png);
+  background: url(https://www.toptal.com/designers/subtlepatterns/uploads/white_wall_hash.png);
 }
 
 button {
@@ -35,7 +35,9 @@ button:hover {
   display: flex;
 }
 
-/* SIDEBAR STYLES */
+/*#endregion */
+
+/*#region Sidebar */
 
 .app-sidebar {
   width: 30%;
@@ -54,7 +56,7 @@ button:hover {
 
 .app-sidebar-notes {
   height: calc(100vh - 78px);
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .app-sidebar-note {
   padding: 25px;
@@ -83,8 +85,9 @@ button:hover {
   background: #08c;
   color: white;
 }
+/*#endregion */
 
-/* NOTE EDITOR/PREVIEW (MAIN) STYLES */
+/*#region Main */
 
 .app-main {
   width: 70%;
@@ -126,6 +129,12 @@ textarea {
   font-size: 2rem;
 }
 
+.app-main-note-edit textarea {
+  resize: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 /* Preview */
 .app-main-note-preview {
   border-top: 1px solid #ddd;
@@ -143,3 +152,5 @@ textarea {
   font-size: 1rem;
   line-height: 2rem;
 }
+
+/*#endregion */
