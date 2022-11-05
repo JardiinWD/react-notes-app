@@ -8,6 +8,9 @@ function App() {
 
   // useState method for notes
   const [notes, setNotes] = useState([])
+  // useState method for Active notes
+  const [activeNote, setActiveNote] = useState(false)
+
 
   // onAddNote Function
   const onAddNote = (event) => {
@@ -23,10 +26,27 @@ function App() {
     setNotes([newNote, ...notes])
   }
 
+
+  /** OnDeleteNote function
+   * 
+   * @param {object} idToDelete // Item to delete
+   */
+  const onDeleteNote = (idToDelete) => {
+    // Manage the current state, filtering the note id
+    setNotes(notes.filter((note) => note.id !== idToDelete))
+  }
+
+
   return (
     <div className="App">
       {/* Sidebar Component */}
-      <Sidebar notes={notes} onAddNote={onAddNote} />
+      <Sidebar
+        notes={notes}
+        onDeleteNote={onDeleteNote}
+        onAddNote={onAddNote}
+        activeNote={activeNote}
+        setActiveNote={setActiveNote}
+      />
       {/* Main Component */}
       <Main />
     </div>

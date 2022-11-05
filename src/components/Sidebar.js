@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Sidebar = ({ notes, onAddNote }) => {
+const Sidebar = ({ notes, onAddNote, onDeleteNote, setActiveNote, activeNote }) => {
 
     console.log(notes);
 
@@ -32,13 +32,18 @@ const Sidebar = ({ notes, onAddNote }) => {
                         }
                         return (
                             /* app-sidebar-note */
-                            <div key={id} className="app-sidebar-note">
+                            <div
+                                key={id}
+                                // I check if note.id === activeNote, then I will active the class "active" 
+                                className={`app-sidebar-note ${note.id === activeNote && "active"}`}
+                                onClick={() => setActiveNote(note.id)}
+                            >
                                 {/* sidebar-note-title */}
                                 <div className="sidebar-note-title">
                                     {/* Title */}
                                     <strong>{title}</strong>
                                     {/* Delete */}
-                                    <button>Delete</button>
+                                    <button onClick={() => onDeleteNote(note.id)}>Delete</button>
                                 </div>
                                 {/* Body with substring method */}
                                 <p>{body && body.substring(0, 100)}...</p>
