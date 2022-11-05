@@ -26,7 +26,6 @@ function App() {
     setNotes([newNote, ...notes])
   }
 
-
   /** OnDeleteNote function
    * 
    * @param {object} idToDelete // Item to delete
@@ -36,6 +35,27 @@ function App() {
     setNotes(notes.filter((note) => note.id !== idToDelete))
   }
 
+  // Get the active note fn
+  const getActiveNote = () => {
+    // Find the correct note with the same ID equal to activeNote
+    return notes.find((note) => note.id === activeNote)
+  }
+
+  // update the active note fn
+  const onUpdateNote = (updatedNote) => {
+    // Created a new variable for the updated note
+    const updatedNotesArray = notes.map((note) => {
+      // Check if the active note is equal to the single note
+      // Then I have returned the param
+      if (note.id === activeNote) return updatedNote
+
+      // Standard return
+      return note
+    })
+
+    // Manage the current states of notes, and I have updated with the new array of updated notes
+    setNotes(updatedNotesArray)
+  }
 
   return (
     <div className="App">
@@ -48,7 +68,7 @@ function App() {
         setActiveNote={setActiveNote}
       />
       {/* Main Component */}
-      <Main />
+      <Main activeNote={getActiveNote()} onUpdateNote={onUpdateNote} />
     </div>
   );
 }
