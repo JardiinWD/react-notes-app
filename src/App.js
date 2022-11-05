@@ -1,16 +1,27 @@
-import React, { useState } from 'react'; // Import React
+import React, { useState, useEffect } from 'react'; // Import React
 import './App.css';  // Import Stylesheet
 import Sidebar from './components/Sidebar';  // Import Sidebar Comp
 import Main from './components/Main'; // Import Main Comp
 import uuid from 'react-uuid'; // Import univoque ID
 
+
 function App() {
 
   // useState method for notes
-  const [notes, setNotes] = useState([])
+  const [notes, setNotes] = useState(() => {
+    // getting stored value
+    const saved = localStorage.getItem("notes")
+    const initialValue = JSON.parse(saved)
+    return initialValue || [];
+  })
   // useState method for Active notes
   const [activeNote, setActiveNote] = useState(false)
 
+  // useEffect
+  useEffect(() => {
+    // localStorage
+    localStorage.setItem("notes", JSON.stringify(notes))
+  }, [notes])
 
   // onAddNote Function
   const onAddNote = (event) => {
@@ -33,6 +44,12 @@ function App() {
   const onDeleteNote = (idToDelete) => {
     // Manage the current state, filtering the note id
     setNotes(notes.filter((note) => note.id !== idToDelete))
+  }
+
+  // Clear All Function
+  const clearAllNotes = () => {
+    // Update the notes state and deleted all
+    setNotes([])
   }
 
   // Get the active note fn
@@ -66,6 +83,7 @@ function App() {
         onAddNote={onAddNote}
         activeNote={activeNote}
         setActiveNote={setActiveNote}
+        clearAllNotes={clearAllNotes}
       />
       {/* Main Component */}
       <Main activeNote={getActiveNote()} onUpdateNote={onUpdateNote} />

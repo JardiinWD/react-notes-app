@@ -1,4 +1,6 @@
 import React from 'react'
+import ReactMarkdown from 'react-markdown'
+
 
 const Main = ({ activeNote, onUpdateNote }) => {
 
@@ -49,9 +51,9 @@ const Main = ({ activeNote, onUpdateNote }) => {
                 {/* preview-title */}
                 <h1 className="preview-title">{activeNote.title}</h1>
                 {/* markdown-preview */}
-                <div className="markdown-preview">
+                <ReactMarkdown className="markdown-preview">
                     {activeNote.body}
-                </div>
+                </ReactMarkdown>
             </div>
         </div>
     )

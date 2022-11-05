@@ -55,7 +55,7 @@ button:hover {
 }
 
 .app-sidebar-notes {
-  height: calc(100vh - 78px);
+  height: calc(95vh - 78px);
   overflow-y: auto;
 }
 .app-sidebar-note {
@@ -154,3 +154,25 @@ textarea {
 }
 
 /*#endregion */
+
+.app-sidebar-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0.5rem;
+  padding-right: 1.25rem;
+}
+
+.app-sidebar-footer button {
+  background: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  color: rgb(204, 48, 0);
+}
+.app-sidebar-footer button:hover {
+  color: rgb(236, 51, 4);
+}

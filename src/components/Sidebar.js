@@ -1,8 +1,9 @@
 import React from 'react'
 
-const Sidebar = ({ notes, onAddNote, onDeleteNote, setActiveNote, activeNote }) => {
+const Sidebar = ({ notes, onAddNote, onDeleteNote, setActiveNote, activeNote, clearAllNotes }) => {
 
-    console.log(notes);
+    // Sorted notes from the last modified version
+    const sortedNotes = notes.sort((a, b) => b.lastModified - a.lastModified)
 
     return (
         /* app-sidebar */
@@ -17,7 +18,7 @@ const Sidebar = ({ notes, onAddNote, onDeleteNote, setActiveNote, activeNote }) 
             {/* app-sidebar-notes */}
             <div className="app-sidebar-notes">
                 {
-                    notes.map(note => {
+                    sortedNotes.map(note => {
                         // Destructuring of Note
                         const { id, title, body, lastModified } = note
                         // Create the option for the dateTimeFormat
@@ -46,7 +47,7 @@ const Sidebar = ({ notes, onAddNote, onDeleteNote, setActiveNote, activeNote }) 
                                     <button onClick={() => onDeleteNote(note.id)}>Delete</button>
                                 </div>
                                 {/* Body with substring method */}
-                                <p>{body && body.substring(0, 100)}...</p>
+                                <p>{body && body.substring(0, 50)}...</p>
                                 {/* note-meta */}
                                 <small className="note-meta">
                                     {/* DateTimeFormat of lastModified */}
@@ -56,6 +57,10 @@ const Sidebar = ({ notes, onAddNote, onDeleteNote, setActiveNote, activeNote }) 
                         )
                     })
                 }
+            </div>
+            {/* app-sidebar-footer */}
+            <div className="app-sidebar-footer">
+                <button onClick={() => clearAllNotes()}>Clear All</button>
             </div>
         </div>
     )
